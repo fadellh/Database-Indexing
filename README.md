@@ -37,9 +37,9 @@
     > Index Scan Using
 - Check query where name
     ```
-    EXPLAIN ANALYZE SELECT id from employees where name = `Zs`;
+    EXPLAIN ANALYZE SELECT id from employees where name = 'Zs';
 
-    EXPLAIN ANALYZE SELECT id from employees where name like `Zs`;
+    EXPLAIN ANALYZE SELECT id from employees where name like 'Zs';
     ```
 - Create Index
     ```
@@ -47,8 +47,8 @@
     ```
 - Check Again
     ```
-    EXPLAIN ANALYZE SELECT id from employees where name like`Zs`;
+    EXPLAIN ANALYZE SELECT id from employees where name like'Zs';
 
-    EXPLAIN ANALYZE SELECT id from employees where name like`%Zs%`;
+    EXPLAIN ANALYZE SELECT id from employees where name like '%Zs%';
     ```
-
+3. 
