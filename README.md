@@ -51,4 +51,40 @@
 
     EXPLAIN ANALYZE SELECT id from employees where name like '%Zs%';
     ```
-3. 
+3. Index Scan vs Index Only Scan
+- Check Table grades
+    ````
+    \d grades;
+    ````
+-  Check cost
+    ```
+    EXPLAIN ANALYZE SELECT name from grades where id = 7;
+    ```
+- Create Index
+    ```
+    CREATE INDEX id_idx on grades(id);
+    ```
+-  Check cost again
+    ```
+    EXPLAIN ANALYZE SELECT name from grades where id = 7;
+    > Index Scan Using
+- Compare cost if select with id 
+    ```    
+    EXPLAIN ANALYZE SELECT name from grades where id = 7;
+    ```
+    > Index Only Scan
+
+-  Modify Index. Add Non-Key Column
+    ```
+    DROP INDEX id_idx;
+
+    CREATE INDEX id_idx on grades(id) include (name);
+    ```
+-  Check cost again
+    ```
+    EXPLAIN ANALYZE SELECT name from grades where id = 7;
+    > Index Only Scan
+-  Check cost with column g
+    ```
+    EXPLAIN ANALYZE SELECT g from grades where id = 7;
+    > Index Scan Using
